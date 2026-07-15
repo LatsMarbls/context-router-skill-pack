@@ -1,0 +1,27 @@
+{
+  "name": "context-router-skill-pack",
+  "version": "1.0.0",
+  "description": "Reusable skill pack for opencode-context-router plugin",
+  "type": "module",
+  "bin": {
+    "ocr-pack": "dist/cli.js"
+  },
+  "files": [
+    "dist/",
+    "skills/",
+    "context-router.jsonc"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "dev": "tsc --watch"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "typescript": "^5.7.0"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "license": "MIT"
+}

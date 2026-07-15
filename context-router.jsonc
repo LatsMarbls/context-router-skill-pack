@@ -1,0 +1,21 @@
+// ─────────────────────────────────────────────────────────────────────────────
+// context-router-skill-pack — config
+//
+// This file merges into your existing context-routing.jsonc.
+// Arrays append. Objects merge recursively. Scalars overwrite.
+//
+// Skill triggers are defined in each skill's frontmatter — no need
+// to duplicate them here. The scanner discovers them automatically.
+//
+// Install: npx ocr-pack install [--project <path>]
+// ─────────────────────────────────────────────────────────────────────────────
+
+{
+  // ── Skill locations ────────────────────────────────────────────────────────
+  // This is the ONLY thing the pack needs to add.
+  // The scanner auto-discovers all triggers/priorities/groups from frontmatter.
+  "skillLocations": [
+    "{project}/.opencode/skills/context-router/{name}/SKILL.md",
+    "{user}/skills/context-router/{name}/SKILL.md"
+  ]
+}
