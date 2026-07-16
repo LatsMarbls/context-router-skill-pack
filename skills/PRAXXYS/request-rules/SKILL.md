@@ -1,57 +1,43 @@
 ---
 name: request-rules
-description: FormRequest validation conventions
+description: PRAXXYS FormRequest conventions — never include status/slug, Rule::unique/enum/exists
 triggers:
   extensions: [".php"]
-  paths: ["app/Http/Requests/", "src/Requests/"]
-  keywords: ["request", "validation", "form request", "validated"]
-priority: 7
+  paths: ["app/Http/Requests/"]
+  keywords: ["request", "validation", "form request"]
+priority: 8
 groups: ["backend-stack"]
 ---
 
-## Request Conventions
+## PRAXXYS Request Conventions
 
-### Rule Class
-- Use `Rule` from `Illuminate\Validation\Rule` for dynamic rules
-- Never use arbitrary string rules for uniqueness, exists, etc.
+### Never Include
+- `status` — managed by service, not user input
+- `slug` — auto-generated from title by service
+
+### Rule Patterns
+- `Rule::unique({Model}::class)->ignore($this->route('{entity}'))` — unique with ignore
+- `Rule::enum({StatusEnum}::class)` — enum validation
+- `Rule::exists({Model}::class, 'id')` — foreign key existence
+- `Rule::in([...])` — fixed value sets
+
+### Image Rules
 ```php
-use Illuminate\Validation\Rule;
-
-// ✅ Correct
-Rule::unique('products', 'slug')->ignore($this->route('product')),
-
-// ❌ Wrong
-'unique:products,slug,' . $this->route('product'),
+'image' => ['nullable', 'image', 'mimes:jpg,png', 'max:2048'],
 ```
 
-### Rule Definition
-- Always use inline arrays for rules — never string pipes
+### Mobile Rules
 ```php
-// ✅ Correct
-return [
-    'title'       => ['required', 'string', 'max:255'],
-    'email'       => ['required', 'email', Rule::unique('users')],
-    'password'    => ['required', 'string', 'min:8', 'confirmed'],
-];
-
-// ❌ Wrong
-return [
-    'title'    => 'required|string|max:255',
-    'email'    => 'required|email|unique:users',
-];
+'mobile' => ['required', 'string', 'digits:10'],
 ```
+
+### Format
+- Always inline arrays — never string pipes
+- `Rule` class from `Illuminate\Validation\Rule` — never string rules for uniqueness/exists
 
 ### Authorization
-- Use `authorize()` method for permission checks
-- Delegate to Gate/Policy — never inline role checks
-```php
-public function authorize(): bool
-{
-    return Gate::allows('create', Product::class);
-}
-```
+- `authorize()` delegates to Gate/Policy — never inline role checks
 
-### Preparation
-- Use `prepareForValidation()` for data normalization
-- Use `passedValidation()` for post-validation hooks
-- Keep both methods minimal — no business logic
+### Hooks
+- `prepareForValidation()` — data normalization
+- `passedValidation()` — post-validation hooks

@@ -1,22 +1,23 @@
 ---
 name: ts-conventions
-description: TypeScript conventions for Vue/Inertia
+description: PRAXXYS TypeScript conventions for Vue/Inertia
 triggers:
   extensions: [".ts", ".vue"]
-  keywords: ["typescript conventions"]
-priority: 5
+  keywords: ["typescript", "ts"]
+priority: 6
 groups: ["frontend-stack"]
 ---
 
-## TypeScript Conventions
+## PRAXXYS TypeScript Conventions
 
-- Prefer `interface` over `type` for object shapes
-- Use `type` for unions, intersections, and primitives
-- Explicit return types on all functions — no inference for public APIs
-- Use `as const` for literal types
-- Avoid `any` — use `unknown` + type narrowing
-- Use branded types for IDs: `type UserId = string & { __brand: 'UserId' }`
-- Define interfaces co-located with their component/page
-- Shared types in `src/interfaces/` directory
-- Use generics for reusable utility types
-- No type stubs — fix the actual source
+- `interface` for object shapes, props, data structures
+- `type` for unions, intersections, primitives, tuples
+- Explicit return types on all functions
+- `as const` for literal types, enum-like constants
+- `unknown` over `any` — narrow with type guards
+- Branded types for entity IDs: `type UserId = string & { __brand: 'UserId' }`
+- Co-locate types with component/page
+- Shared types in `interfaces/` directory
+- Generics for reusable utility types
+- `import type { ... }` for type-only imports
+- `tsconfig.json`: strict mode, `@/` path alias, `verbatimModuleSyntax`

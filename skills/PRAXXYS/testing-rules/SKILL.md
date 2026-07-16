@@ -1,33 +1,48 @@
 ---
 name: testing-rules
-description: PHPUnit testing conventions (TDD)
+description: PRAXXYS testing conventions — ResourceOperationTest, BDD, SCEUDRIX traits
 triggers:
   extensions: [".php"]
   paths: ["tests/"]
-  keywords: ["test", "phpunit", "pest", "assertion", "mock", "factory"]
-priority: 7
+  keywords: ["test", "phpunit", "pest"]
+priority: 8
 groups: ["backend-stack"]
 ---
 
-## Testing Rules
+## PRAXXYS Testing Conventions
 
 ### Structure
-- One test file per class: `tests/Unit/Models/UserTest.php`
-- Feature tests in `tests/Feature/` for HTTP request testing
-- Method naming: `it_does_something_in_this_situation`
-- Use Pest for new tests (simpler syntax)
+- Extend `ResourceOperationTest` for CRUD feature tests
+- Compose test traits per SCEUDRIX flags enabled on entity
+- One test class per entity
 
-### Best Practices
-- Red-Green-Refactor: write failing test first, make it pass, then refactor
-- Use factories over fixtures for database seeding
-- `RefreshDatabase` trait for feature tests
-- `DatabaseTransactions` trait for faster unit tests
-- Mock external HTTP calls with `Http::fake()`
-- Mock mail with `Mail::fake()`, notifications with `Notification::fake()`
-- Test happy path AND error cases
-- Assert on response structure, not hardcoded IDs
+### BDD First
+- Write Gherkin feature files before test code
+- `Given` (state) → `When` (action) → `Then` (assertion)
+
+### SCEUDRIX Test Traits
+| Flag | Test Trait |
+|------|-----------|
+| S | HasReadTest |
+| C | HasCreateTest |
+| E/U | HasUpdateTest |
+| D | HasDeleteTest |
+| R | HasRestoreTest |
+| I | HasImportTest |
+| X | HasExportTest |
+
+### Red-Green-Refactor
+- Write failing test first, make it pass, then refactor
+- `php artisan test --filter={Entity}` — all must pass
+
+### Mocking
+- `Excel::fake()` for import tests
+- `Storage::fake('local')` for upload tests
+- `Queue::fake()` for job tests
+- `Http::fake()` for external API calls
 
 ### Coverage
-- Minimum 80% coverage for business logic
-- 100% coverage for Action classes
-- Integration tests for critical user journeys
+- 80%+ for business logic
+- 100% for Action classes
+- Integration tests for critical journeys
+- Happy path AND error cases

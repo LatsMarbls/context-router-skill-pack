@@ -1,57 +1,39 @@
 ---
 name: service-rules
-description: Service layer conventions for business logic
+description: PRAXXYS service conventions — CrudService, bundled traits, filter chain
 triggers:
   extensions: [".php"]
-  paths: ["app/Services/", "src/Services/"]
+  paths: ["app/Services/"]
   keywords: ["service", "business logic", "transaction"]
-priority: 8
+priority: 9
 groups: ["backend-stack"]
 ---
 
-## Service Conventions
+## PRAXXYS Service Conventions
 
-### Error Handling
-- No try/catch in services — let exceptions bubble up to the controller
-- Use Laravel's exception handling for global catch
-- Throw domain-specific exceptions when needed
-```php
-throw new InsufficientStockException($product, $quantityRequested);
-```
+### Base Class
+- Extend `PRAXXYS\Backend\Services\CrudService` (extends `ResourceService`)
 
-### Database Transactions
-- Wrap atomic operations in `DB::transaction()`
-- Keep transaction scope minimal — one logical unit
-```php
-DB::transaction(function () use ($data) {
-    $order = $this->orderRepository->create($data);
-    $this->inventoryService->reserveStock($order);
-    $this->paymentService->charge($order);
-    return $order;
-});
-```
+### Bundled Traits (do NOT re-add)
+- `HasActivityLogs` — activity log queries
+- `HasCounts` — tab counts (total, archived, trashed)
+- `HasCreateProcessor` — `defaultStore()` with `prepareStoreData()`
+- `HasDeleteProcessor` — `defaultDelete()` with soft/hard delete
+- `HasListProcessor` — `defaultIndex()` with search/filter/sort/tab/pagination
+- `HasRestoreProcessor` — `defaultRestore()` for soft-deleted records
+- `HasUpdateProcessor` — `defaultEdit()` + `defaultUpdate()` with `prepareUpdateData()`
 
-### Query Strategy
-- **Eloquent**: CRUD, simple relationships, ≤ 1K rows
-- **Query Builder**: Aggregations, reports, joins, 1K–100K rows
-- **Raw SQL**: Bulk operations, complex reporting, > 100K rows
-- Document why you chose the approach for non-obvious cases
+### Filter Chain
+- `setTabs()` → `setSorts()` → `setFilters()` → `defaultIndex()`
 
-### Eager Loading
-- Always eager load relationships that will be accessed
-- Use `with()` on queries, never lazy-load inside loops
-```php
-// ✅ Correct
-$orders = Order::with('items.product', 'customer')->get();
+### Store Pattern
+- `DB::transaction(fn() => $this->defaultStore($request))`
+- Override `prepareStoreData()` / `prepareUpdateData()` for modifications
 
-// ❌ Wrong — N+1
-$orders = Order::all();
-foreach ($orders as $order) {
-    echo $order->customer->name;
-}
-```
+### No Constructor
+- Do NOT add `__construct()` — controller's `WithResourceService` handles model/resource binding
 
-### Structure
-- One service class per domain entity/feature
-- Methods return typed results (resources, DTOs, collections)
-- Repository pattern is NOT used — trait-driven models instead
+### Additional Traits
+- Read: `HasReadProcessor`
+- Export: `HasExportProcessor`
+- Import: `HasImportProcessor`

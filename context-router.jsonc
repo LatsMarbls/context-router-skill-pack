@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// context-router-skill-pack — config
+// PRAXXYS Skill Pack — config
 //
 // This file merges into your existing context-routing.jsonc.
 // Arrays append. Objects merge recursively. Scalars overwrite.
@@ -12,10 +12,14 @@
 
 {
   // ── Skill locations ────────────────────────────────────────────────────────
-  // This is the ONLY thing the pack needs to add.
-  // The scanner auto-discovers all triggers/priorities/groups from frontmatter.
+  // Scanner auto-discovers all triggers/priorities/groups from frontmatter.
   "skillLocations": [
-    "{project}/.opencode/skills/context-router/{name}/SKILL.md",
-    "{user}/skills/context-router/{name}/SKILL.md"
-  ]
+    "{project}/.opencode/skills/PRAXXYS/{name}/SKILL.md",
+    "{user}/skills/PRAXXYS/{name}/SKILL.md"
+  ],
+
+  // ── Evaluate fresh each turn ───────────────────────────────────────────────
+  // When false, only skills triggered by the current message/agent/file
+  // are injected. Previous-turn skills are not accumulated.
+  "accumulateSkills": false
 }

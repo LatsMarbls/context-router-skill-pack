@@ -1,21 +1,19 @@
 ---
 name: security-rules
-description: Security best practices for all code
-triggers:
-  keywords: ["proper cybersecurity"]
+description: PRAXXYS security best practices
+keywords: ["security", "cybersecurity"]
 priority: 10
 ---
 
-## Security Rules
+## PRAXXYS Security Rules
 
-- **Never trust user input** — validate, sanitize, escape
-- Use parameterized queries / Eloquent ORM — never raw `DB::statement()` with concatenation
-- Escape output: `{{ $var }}` in Blade, not `{!! $var !!}` unless safe HTML
-- CSRF: Include `@csrf` on every POST/PUT/DELETE form
-- XSS: Use `strip_tags()` or HTML purifier for rich text
-- SQL Injection: Always use Eloquent or Query Builder with bound params
-- Authentication: Use Laravel's built-in guards, never roll your own
-- Authorization: Use Gates/Policies, not `if (auth()->user()->role === 'admin')`
-- Rate limiting on public endpoints
-- Validate file uploads: MIME type, size, extension
-- Log security events: failed logins, unauthorized access attempts
+- **Authorization**: Gates/Policies — never inline role checks
+- **Validation**: FormRequest `authorize()` — never inline
+- **SQL Injection**: Eloquent ORM — never raw SQL with string interpolation
+- **XSS**: `{{ }}` in Blade — never `{!! !!}` with user content
+- **CSRF**: `@csrf` on every POST form, Sanctum for SPA/API
+- **Mass Assignment**: `$fillable` or `$guarded` on every model
+- **Rate Limiting**: on all public endpoints, stricter on auth
+- **File Uploads**: validate MIME type, size, extension
+- **Logging**: log failed logins, unauthorized access, permission changes
+- **HTTPS**: enforce in production, secure HTTP headers (HSTS, CSP)

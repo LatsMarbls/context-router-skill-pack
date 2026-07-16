@@ -1,52 +1,43 @@
 ---
 name: enum-rules
-description: PHP enum definition conventions
+description: PRAXXYS enum conventions — backed enums, label(), migration pattern
 triggers:
   extensions: [".php"]
-  paths: ["app/Enums/", "src/Enums/"]
+  paths: ["app/Enums/"]
   keywords: ["enum", "case", "backed enum", "status"]
-priority: 7
+priority: 8
 groups: ["backend-stack"]
 ---
 
-## Enum Conventions
+## PRAXXYS Enum Conventions
 
-### Definition Style
-- Use PHP 8.1+ backed enums with `string` or `int` type
-- Name pattern: `{Entity}{Attribute}` — e.g. `ProductStatus`, `OrderState`
-```php
-enum ProductStatus: int
-{
-    case Draft     = 0;
-    case Published = 1;
-    case Archived  = 2;
-}
-```
+### Definition
+- PHP 8.1+ backed enums with `int` type
+- Name: `{Entity}{Attribute}` — e.g. `ProductStatus`, `OrderState`
 
 ### Label Method
-- Include `label()` method for display-friendly text
+- Every enum includes `label()` returning display text:
 ```php
 public function label(): string
 {
     return match ($this) {
         self::Draft     => 'Draft',
         self::Published => 'Published',
-        self::Archived  => 'Archived',
     };
 }
 ```
 
-### From Database
-- When storing in DB: use `$enum->value` to unwrap
-- When casting: set `protected $casts = ['status' => ProductStatus::class];`
-- For migration: use unsigned tiny integer with default + comment
+### Migration
+- `unsignedTinyInteger` — never `string` or `integer`:
 ```php
 $table->unsignedTinyInteger('status')
     ->default(ProductStatus::Draft->value)
     ->comment(ProductStatus::class);
 ```
 
-### Enum Methods
-- Business logic on the enum itself (e.g. `canTransitionTo()`)
-- Keep enums focused — one concern per enum
-- No side effects in enum methods
+### Casting
+- `'status' => ProductStatus::class` in model `$casts`
+
+### Methods
+- Business logic on enum (e.g. `canTransitionTo()`)
+- Pure methods — no DB queries or side effects

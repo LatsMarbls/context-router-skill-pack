@@ -1,54 +1,41 @@
 ---
 name: controller-rules
-description: Thin controller conventions
+description: PRAXXYS controller conventions — ResourceController, SCEUDRIX trait pairs
 triggers:
   extensions: [".php"]
-  paths: ["app/Http/Controllers/", "src/Controllers/"]
-  keywords: ["controller", "resource", "endpoint"]
-priority: 8
+  paths: ["app/Http/Controllers/"]
+  keywords: ["controller", "resource", "endpoint", "scrudrix"]
+priority: 9
 groups: ["backend-stack"]
 ---
 
-## Controller Conventions
+## PRAXXYS Controller Conventions
 
-### No Business Logic
-- Controllers are thin — one method = one concern
-- Delegate all business logic to Services
-- No Eloquent queries in controllers (except simple `findOrFail`)
-- No computation, no conditionals beyond auth checks
+### Base Class
+- Extend `PRAXXYS\Backend\Controllers\ResourceController`
+- Bundles: `WithResourceDirectory`, `WithResourceRoute`, `WithResourceService`
+- Abstract methods: `directory(): string`, `routeName(): string`, `service(): ResourceService`
 
-### Validation
-- Never validate inline in controllers
-- Always delegate to FormRequest classes
-```php
-// ✅ Correct
-public function store(StoreProductRequest $request): ProductResource
-{
-    return new ProductResource(
-        $this->productService->create($request->validated())
-    );
-}
+### Default Helpers
+- `defaultIndex(Request, Model|string, string JsonResourceClass, array additionalProps)` — paginated list
+- `defaultCreate(Request, array additionalProps)` — create page
+- `defaultEdit(Request, Model, string JsonResourceClass, array additionalProps)` — edit page
+- `defaultStore(FormRequest, Model|string)` — store
 
-// ❌ Wrong
-public function store(Request $request)
-{
-    $validated = $request->validate([...]);
-}
-```
+### SCEUDRIX → Trait Mapping
+| Flag | Controller Trait | Service Trait |
+|------|-----------------|---------------|
+| S | HasReadMethod | HasReadProcessor |
+| C | HasCreateMethod | HasCreateProcessor |
+| E/U | HasUpdateMethod | HasUpdateProcessor |
+| D | HasDeleteMethod | HasDeleteProcessor |
+| R | HasRestoreMethod | HasRestoreProcessor |
+| I | HasImportMethod | HasImportProcessor |
+| X | HasExportMethod | HasExportProcessor |
 
-### Responses
-- Always use `JsonResource` — never return arrays directly
-- Use resource collections for lists
-```php
-// ✅ Correct
-return new ProductResource($product);
-return ProductResource::collection($products);
-
-// ❌ Wrong
-return response()->json(['data' => $product->toArray()]);
-```
-
-### Method Signatures
-- Inject services via constructor DI
-- Type-hint FormRequests, not base Request class
-- Return type-hinted resources
+### Rules
+- Controllers are thin — delegate to Services
+- No Eloquent queries in controllers
+- Always inject typed FormRequest classes, not base Request
+- Always return JsonResource — never arrays
+- `$this->whenLoaded('relation', fn() => $this->relation->preview())` in resources

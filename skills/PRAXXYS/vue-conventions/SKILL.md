@@ -1,50 +1,63 @@
 ---
 name: vue-conventions
-description: Vue 3 + Composition API conventions
+description: PRAXXYS Vue 3 + Vue Kit conventions — page structure, composables, components
 triggers:
   extensions: [".vue"]
-  paths: ["src/components/", "src/pages/"]
-  keywords: ["vue conventions"]
-priority: 6
+  paths: ["resources/js/"]
+  keywords: ["vue", "vue component", "vue page"]
+priority: 7
 groups: ["frontend-stack"]
 ---
 
-## Vue 3 Conventions
+## PRAXXYS Vue Conventions
 
 ### Composition API
-- Use `<script setup lang="ts">` — no Options API
-- One component per file
-- Composable functions in `src/composables/` named `use*`
-- Extract logic > 5 lines into composables
+- `<script setup lang="ts">` — no Options API
+- `defineProps<T>()` with TypeScript interface
+- `defineEmits<T>()` with typed payload
+- `defineModel<T>()` for v-model bindings
 
-### Template
-- Use `v-for` with `:key` (always)
-- Event handlers: `@click="handler"` not `@click="handler()"` (unless passing args)
-- Conditional rendering: `v-if` over `v-show` for rare toggles
-- Use slots for extensible child components
+### PRAXXYS Vue Kit Components
+- **UiDataTable** — data tables with filters, sorting, pagination
+- **UiModal** — modals
+- **UiButton** — buttons
+- **UiBadge** — status badges
+- **UiTabs** / **UiNavbar** — tab navigation
+- **UiFormLayout** — form layouts
+- **UiTextBlock** — field display
+- **UiActivityLog** — activity/audit logs
+- **UiTableActions** — action buttons with getActions()
+- **UiCreateButton** — create navigation
+- **UiExportButton** / **UiImportButton** — export/import
 
-### Props & Emits
-- Define props with `defineProps<{ ... }>()` — type-safe
-- Define emits with `defineEmits<{ (e: 'update', val: T): void }>()`
-- Use `v-model` for two-way bindings following PrimeVue patterns
+### Page Structure
+- `Pages/Admin/{Domain}/{Feature}/Index.vue`
+- `Pages/Admin/{Domain}/{Feature}/Create.vue`
+- `Pages/Admin/{Domain}/{Feature}/Edit.vue`
+- `Pages/Admin/{Domain}/{Feature}/Show.vue`
 
-### Styling
-- Use design tokens from `tokens.css` — never hardcode colors
-- Scoped styles: `<style scoped>`
-- Use CSS variables for theme-able values
+### Composables
+- `useTableFilters(options)` — filter state synced with URL query params
+- `useForm(initialValues)` — Inertia form state management
+- `usePage()` — current page props
+- `router.get()` / `router.post()` — navigation (not axios)
 
-### Script Setup
-- Always `<script setup lang="ts">` — no Options API
-- Define component name via file name, not `name:` property
-- Use `await` directly in setup (surrounded by `Suspense`)
+### Index Page
+- `props.data?.data ?? []` — never Array.isArray check
+- `dateCreatedField` on both filters and data-table
+- `filterConfig` computed from BE-provided prop arrays
+- `sortFields` defined for sortable columns
+- `UiTableActions` with `getActions()` for view/edit/archive/restore
 
-### Data Fetching
-- Use Inertia `usePage()` / `useForm()` for form handling
-- Use `router.get()`, `router.post()` for navigation, not axios
-- Loading states: use `useForm.progress` for uploads
+### Create/Edit
+- Initial values match BE FormRequest (no status, no slug)
+- `form.post(route('admin.{entity}.store'))` — create
+- `form.post(route('admin.{entity}.update', id))` — update
+- `:test-id` on all input components
+- `UiCancelButton` for navigation back
 
-### Performance
-- Lazy load routes: `defineAsyncComponent` or dynamic `import()`
-- Use `shallowRef` for large immutable data
-- Use `v-memo` for expensive lists that rarely change
-- Avoid watchers on computed properties — computed already caches
+### Show Page
+- `#title` slot with h1 + UiBadge for status
+- `#tabs` slot with UiNavbar
+- UiTextBlock for field display
+- UiActivityLog for activity logs
