@@ -6,7 +6,7 @@ triggers:
   paths: ["database/migrations/"]
   keywords: ["migration", "schema", "table", "column"]
 priority: 10
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix"]
 ---
 
 ## PRAXXYS Migration Conventions

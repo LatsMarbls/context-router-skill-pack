@@ -6,7 +6,7 @@ triggers:
   paths: ["app/", "src/"]
   keywords: ["laravel conventions"]
 priority: 7
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## Laravel Conventions

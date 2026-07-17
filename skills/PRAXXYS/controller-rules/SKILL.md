@@ -6,7 +6,7 @@ triggers:
   paths: ["app/Http/Controllers/"]
   keywords: ["controller", "resource", "endpoint", "scrudrix"]
 priority: 9
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Controller Conventions

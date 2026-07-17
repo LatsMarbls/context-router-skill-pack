@@ -6,7 +6,7 @@ triggers:
   paths: ["tests/"]
   keywords: ["test", "phpunit", "pest"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix"]
 ---
 
 ## PRAXXYS Testing Conventions

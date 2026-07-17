@@ -4,7 +4,7 @@ description: PRAXXYS Export conventions — streaming export, ExportResource, tr
 triggers:
   keywords: ["praxxys export"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Export Conventions

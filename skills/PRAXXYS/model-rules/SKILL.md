@@ -6,7 +6,7 @@ triggers:
   paths: ["app/Models/"]
   keywords: ["model", "eloquent"]
 priority: 9
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Model Conventions

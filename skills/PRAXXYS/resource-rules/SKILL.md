@@ -6,7 +6,7 @@ triggers:
   paths: ["app/Http/Resources/"]
   keywords: ["resource", "json resource"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Resource Conventions

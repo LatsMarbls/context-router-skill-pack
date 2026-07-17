@@ -6,7 +6,7 @@ triggers:
   paths: ["app/Http/Requests/"]
   keywords: ["request", "validation", "form request"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Request Conventions

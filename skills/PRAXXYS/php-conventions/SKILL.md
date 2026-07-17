@@ -5,6 +5,8 @@ triggers:
   extensions: [".php"]
   keywords: ["php"]
 priority: 5
+groups: ["crudrix", "scrudrix", "sdrix", "six", "sx"]
+
 ---
 
 ## PHP Conventions

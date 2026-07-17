@@ -3,6 +3,8 @@ name: build-rules
 description: Personal dev coding preferences for implementation
 keywords: ["build", "implement", "code", "write", "refactor"]
 priority: 9
+groups: ["crudrix", "scrudrix", "sdrix", "six", "sx"]
+
 ---
 
 ## Build Conventions

@@ -5,7 +5,7 @@ triggers:
   paths: ["routes/"]
   keywords: ["route", "router", "api route", "web route"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Route Conventions

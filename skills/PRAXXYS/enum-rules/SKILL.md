@@ -6,7 +6,7 @@ triggers:
   paths: ["app/Enums/"]
   keywords: ["enum", "case", "backed enum", "status"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Enum Conventions

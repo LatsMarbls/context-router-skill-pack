@@ -6,7 +6,7 @@ triggers:
   paths: ["app/Services/"]
   keywords: ["service", "business logic", "transaction"]
 priority: 9
-groups: ["backend-stack"]
+groups: ["backend-stack", "crudrix", "scrudrix", "sdrix", "six", "sx"]
 ---
 
 ## PRAXXYS Service Conventions

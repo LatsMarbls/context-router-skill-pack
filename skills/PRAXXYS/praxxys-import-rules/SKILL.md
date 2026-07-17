@@ -4,7 +4,7 @@ description: PRAXXYS Import conventions — BaseImport, ManifestExport, trait pa
 triggers:
   keywords: ["praxxys import"]
 priority: 8
-groups: ["backend-stack"]
+groups: ["backend-stack", "scrudrix", "sdrix", "six"]
 ---
 
 ## PRAXXYS Import Conventions
