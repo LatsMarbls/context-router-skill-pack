@@ -1,21 +1,7 @@
 ---
 name: context-router-skill-author
 description: How to author context-router skill files — frontmatter schema, trigger types, group conventions, common pitfalls, and template
-triggers:
-  extensions: [".md"]
-  paths: [".opencode/skills/", "skills/"]
-  keywords:
-    - create skill
-    - new skill
-    - add skill
-    - make a skill
-    - write a skill
-    - skill frontmatter
-    - skill template
-    - author skill
-    - skill format
 priority: 8
-groups: ["context-router-meta"]
 ---
 
 # Authoring context-router Skills
