@@ -1,7 +1,6 @@
 ---
 name: context-router-skill-author
 description: How to author context-router skill files — frontmatter schema, trigger types, group conventions, common pitfalls, and template
-priority: 8
 ---
 
 # Authoring context-router Skills
