@@ -19,6 +19,15 @@
     "{user}/skills/PRX/{name}/SKILL.md"
   ],
 
+  // ── Directories to skip when matching path triggers ───────────────────────
+  "triggerIgnoreTags": ["node_modules", ".git", "vendor", "dist", ".next", "build"],
+
   // ── Evaluate fresh each turn ───────────────────────────────────────────────
-  "accumulateSkills": false
+  "accumulateSkills": false,
+
+  // ── Show TUI toast on skill load/unload ───────────────────────────────────
+  "showToasts": true,
+
+  // ── Verbose console logging ──────────────────────────────────────────────
+  "debug": false
 }
