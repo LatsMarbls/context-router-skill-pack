@@ -14,8 +14,8 @@
   // ── Skill locations ────────────────────────────────────────────────────────
   // Scanner auto-discovers all triggers/priorities/groups from frontmatter.
   "skillLocations": [
-    "{project}/.opencode/skills/PRAXXYS/{name}/SKILL.md",
-    "{user}/skills/PRAXXYS/{name}/SKILL.md"
+    "{project}/.opencode/rules/prx/{name}/RULES.md",
+    "{user}/rules/prx/{name}/RULES.md"
   ],
 
   // ── Evaluate fresh each turn ───────────────────────────────────────────────

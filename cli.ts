@@ -18,11 +18,11 @@ import { fileURLToPath } from "node:url";
 
 const DIST_DIR = dirname(fileURLToPath(import.meta.url));
 const PROJECT_ROOT = resolve(DIST_DIR, "..");
-const SKILLS_SRC = join(PROJECT_ROOT, "skills", "context-router");
+const SKILLS_SRC = join(PROJECT_ROOT, "rules", "prx");
 const CFG_SRC = join(PROJECT_ROOT, "context-router.jsonc");
-const USER_SKILLS_DIR = join(homedir(), ".config", "opencode", "skills");
+const USER_RULES_DIR = join(homedir(), ".config", "opencode", "rules", "prx");
 const USER_CONFIG_PATH = join(homedir(), ".config", "opencode", "context-router.jsonc");
-const MANIFEST_PATH = join(USER_SKILLS_DIR, ".ocr-pack-manifest.json");
+const MANIFEST_PATH = join(USER_RULES_DIR, "..", "..", ".ocr-pack-manifest.json");
 
 interface Manifest {
   version: string;
@@ -58,7 +58,7 @@ function discoverSkills(src: string): string[] {
   return readdirSync(src, { withFileTypes: true })
     .filter(d => d.isDirectory())
     .map(d => d.name)
-    .filter(name => existsSync(join(src, name, "SKILL.md")))
+    .filter(name => existsSync(join(src, name, "RULES.md")))
     .sort();
 }
 
@@ -67,9 +67,9 @@ function discoverSkills(src: string): string[] {
 // ── Commands ──────────────────────────────────────────────────────────────────
 
 function cmdInstall(targetDir: string, linkMode: boolean, force: boolean): void {
-  const skillsDir = join(targetDir, "skills", "context-router");
+  const rulesDir = join(targetDir, "rules", "prx");
 
-  // 1. Discover skills in pack
+  // 1. Discover rules in pack
   const dirSkills = discoverSkills(SKILLS_SRC);
   const allSkills = [...dirSkills];
 
@@ -78,8 +78,8 @@ function cmdInstall(targetDir: string, linkMode: boolean, force: boolean): void 
     process.exit(1);
   }
 
-  // 2. Copy/link skills
-  mkdirSync(skillsDir, { recursive: true });
+  // 2. Copy/link rules
+  mkdirSync(rulesDir, { recursive: true });
   let copied = 0;
   let skipped = 0;
 
@@ -138,13 +138,13 @@ function cmdInstall(targetDir: string, linkMode: boolean, force: boolean): void 
   const linkLabel = linkMode ? " (symlinked)" : "";
   console.log(`\n  ✅ Installed ${copied} skills${linkLabel}`);
   if (skipped > 0) console.log(`  ⚠ ${skipped} skills skipped (use --force to overwrite)`);
-  console.log(`  📍 ${skillsDir}`);
+  console.log(`  📍 ${rulesDir}`);
   console.log(`  📄 ${USER_CONFIG_PATH}\n`);
 }
 
 function cmdUninstall(targetDir: string): void {
   const manifestPath = join(targetDir, ".ocr-pack-manifest.json");
-  const skillsDir = join(targetDir, "skills");
+  const rulesDir = join(targetDir, "rules", "prx");
 
   if (!existsSync(manifestPath)) {
     console.log("No manifest found. Nothing to uninstall.");
@@ -154,7 +154,7 @@ function cmdUninstall(targetDir: string): void {
   const manifest: Manifest = JSON.parse(readFileSync(manifestPath, "utf-8"));
 
   for (const name of manifest.skills) {
-    const dest = join(skillsDir, name);
+    const dest = join(rulesDir, name);
     if (existsSync(dest)) {
       rmSync(dest, { recursive: true });
       console.log(`  ✕ Removed ${name}`);
@@ -162,30 +162,30 @@ function cmdUninstall(targetDir: string): void {
   }
 
   rmSync(manifestPath);
-  console.log(`\n  ✅ Uninstalled ${manifest.skills.length} skills\n`);
+  console.log(`\n  ✅ Uninstalled ${manifest.skills.length} rules\n`);
 }
 
 function cmdList(targetDir: string): void {
-  const skillsDir = join(targetDir, "skills");
-  if (!existsSync(skillsDir)) {
-    console.log("No skills installed.");
+  const rulesDir = join(targetDir, "rules", "prx");
+  if (!existsSync(rulesDir)) {
+    console.log("No rules installed.");
     return;
   }
 
-  const dirSkills = readdirSync(skillsDir, { withFileTypes: true })
-    .filter(d => d.isDirectory() && existsSync(join(skillsDir, d.name, "SKILL.md")))
+  const dirSkills = readdirSync(rulesDir, { withFileTypes: true })
+    .filter(d => d.isDirectory() && existsSync(join(rulesDir, d.name, "RULES.md")))
     .map(d => d.name)
     .sort();
 
   if (dirSkills.length === 0) {
-    console.log("No skills found.");
+    console.log("No rules found.");
     return;
   }
 
-  console.log(`\n  Installed skills (${dirSkills.length}):\n`);
+  console.log(`\n  Installed rules (${dirSkills.length}):\n`);
   for (const name of dirSkills) {
-    const skillPath = join(skillsDir, name, "SKILL.md");
-    const stats = statSync(skillPath);
+    const rulePath = join(rulesDir, name, "RULES.md");
+    const stats = statSync(rulePath);
     const linked = stats.isSymbolicLink() ? " 🔗" : "";
     const kb = (stats.size / 1024).toFixed(1);
     console.log(`    ${name}${linked}  (${kb}KB)`);
