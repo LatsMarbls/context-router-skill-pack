@@ -5,8 +5,6 @@ compatibility: opencode
 metadata:
   owner: engineering
   stack: context-router
-keywords: ["make rule", "create rule", "new rule", "rule generator", "RULES.md", "author rule", "context-router rule"]
-priority: 10
 ---
 
 # Context-Router Rule Author
