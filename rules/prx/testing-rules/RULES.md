@@ -1,7 +1,6 @@
 ---
 name: testing-rules
 triggers:
-  extensions: [".php"]
   paths: ["tests/"]
   keywords: ["test", "phpunit", "pest"]
 priority: 8

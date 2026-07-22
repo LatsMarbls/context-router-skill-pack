@@ -1,7 +1,6 @@
 ---
 name: migration-rules
 triggers:
-  extensions: [".php"]
   paths: ["database/migrations/"]
   keywords: ["migration", "schema", "table", "column"]
 priority: 10

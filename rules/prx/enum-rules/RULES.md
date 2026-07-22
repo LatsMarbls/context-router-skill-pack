@@ -1,7 +1,6 @@
 ---
 name: enum-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/Enums/"]
   keywords: ["enum", "case", "backed enum", "status"]
 priority: 8

@@ -1,7 +1,6 @@
 ---
 name: service-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/Services/"]
   keywords: ["service", "business logic", "transaction"]
 priority: 9

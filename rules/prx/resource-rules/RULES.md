@@ -1,7 +1,6 @@
 ---
 name: resource-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/Http/Resources/"]
   keywords: ["resource", "json resource"]
 priority: 8

@@ -1,7 +1,6 @@
 ---
 name: model-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/Models/"]
   keywords: ["model", "eloquent"]
 priority: 9

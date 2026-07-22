@@ -1,7 +1,7 @@
 ---
 name: ts-conventions
 triggers:
-  extensions: [".ts", ".vue"]
+  extensions: [".ts"]
   keywords: ["typescript", "ts"]
 priority: 6
 groups: ["frontend-stack"]

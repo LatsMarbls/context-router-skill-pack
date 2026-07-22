@@ -1,7 +1,6 @@
 ---
 name: request-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/Http/Requests/"]
   keywords: ["request", "validation", "form request"]
 priority: 8

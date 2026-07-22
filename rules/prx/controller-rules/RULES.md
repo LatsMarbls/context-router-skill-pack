@@ -1,7 +1,6 @@
 ---
 name: controller-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/Http/Controllers/"]
   keywords: ["controller", "resource", "endpoint", "scrudrix"]
 priority: 9

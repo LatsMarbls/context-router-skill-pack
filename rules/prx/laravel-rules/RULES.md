@@ -1,7 +1,6 @@
 ---
 name: laravel-rules
 triggers:
-  extensions: [".php"]
   paths: ["app/", "src/"]
   keywords: ["laravel conventions"]
 priority: 7
