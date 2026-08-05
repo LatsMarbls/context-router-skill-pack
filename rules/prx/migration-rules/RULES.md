@@ -7,13 +7,13 @@ priority: 10
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Migration Conventions
+## PRX Migration Conventions
 
 ### Naming
 - `YYYY_MM_DD_{sequence}_create_{table}_table.php`
 
 ### Archives
-- `$table->archives()` — PRAXXYS soft-delete shortcut (use instead of `$table->softDeletes()`)
+- `$table->archives()` — PRX soft-delete shortcut (use instead of `$table->softDeletes()`)
 
 ### Enum Columns
 - **Never use native PHP enums as column types**

@@ -7,7 +7,7 @@ priority: 6
 groups: ["frontend-stack"]
 ---
 
-## PRAXXYS TypeScript Conventions
+## PRX TypeScript Conventions
 
 - `interface` for object shapes, props, data structures
 - `type` for unions, intersections, primitives, tuples

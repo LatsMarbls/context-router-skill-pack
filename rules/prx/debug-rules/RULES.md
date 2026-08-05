@@ -4,7 +4,7 @@ keywords: ["debug"]
 priority: 5
 ---
 
-## PRAXXYS Debug Rules
+## PRX Debug Rules
 
 - Reproduce with minimal steps first
 - Check logs: `storage/logs/laravel.log`, browser console, network tab

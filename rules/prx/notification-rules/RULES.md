@@ -5,7 +5,7 @@ triggers:
 priority: 8
 ---
 
-## PRAXXYS Notification Conventions
+## PRX Notification Conventions
 
 ### Notifier Facade
 
@@ -68,7 +68,7 @@ Register custom channels via `PRXBackend::registerNotificationChannels([...])`.
 `TemplatedNotification` extends `Notification implements ShouldQueue`
 
 - `via($notifiable)` — resolves channels from DB `notification_templates` table
-- `toMail($notifiable)` — renders `praxxys-backend::mail.templated-notification` blade
+- `toMail($notifiable)` — renders `PRX-backend::mail.templated-notification` blade
 - `toDatabase($notifiable)` — returns array stored in `notifications` table
 
 ### NotificationTemplate Model
@@ -80,7 +80,7 @@ Register custom channels via `PRXBackend::registerNotificationChannels([...])`.
 
 ### Notifiable Models
 
-- `Admin` — `praxxys-backend/src/Models/Admins/Admin.php`
+- `Admin` — `PRX-backend/src/Models/Admins/Admin.php`
 - `User` — `app/Models/User.php`
 - `Customer` — `app/Models/Accounts/Customer.php`
 
@@ -113,7 +113,7 @@ Notifier::send('orders-order-received', $admins, [
 ### Receiver Constants
 
 ```php
-NotificationReceiver::ADMIN     // from praxxys-backend
+NotificationReceiver::ADMIN     // from PRX-backend
 NotificationReceiver::CUSTOMER  // project-level override
 ```
 

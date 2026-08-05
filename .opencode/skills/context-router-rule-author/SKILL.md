@@ -1,6 +1,6 @@
 ---
 name: context-router-rule-author
-description: Author and maintain context-router rules (RULES.md) for the PRAXXYS skill pack. Guides AI on frontmatter schema, trigger types, file structure, and conventions.
+description: Author and maintain context-router rules (RULES.md) for the PRX skill pack. Guides AI on frontmatter schema, trigger types, file structure, and conventions.
 compatibility: opencode
 metadata:
   owner: engineering

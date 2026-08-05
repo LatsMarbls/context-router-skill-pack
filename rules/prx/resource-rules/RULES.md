@@ -7,7 +7,7 @@ priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Resource Conventions
+## PRX Resource Conventions
 
 ### Status Formatting (context-dependent)
 | Context | Method | Returns |

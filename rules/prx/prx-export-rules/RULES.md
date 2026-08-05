@@ -1,19 +1,12 @@
 ---
-name: praxxys-export-rules
+name: prx-export-rules
 triggers:
-  keywords: ["praxxys export"]
+  keywords: ["prx export"]
 priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Export Conventions
-
-### MCP Verification
-```
-mcp_praxxys_backend_get_trait --name=HasExportMethod
-mcp_praxxys_backend_get_trait --name=HasExportProcessor
-mcp_praxxys_backend_get_trait --name=HasExportTest
-```
+## PRX Export Conventions
 
 ### Trait Pair
 | Layer | Trait |

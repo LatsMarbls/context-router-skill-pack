@@ -7,7 +7,7 @@ priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Enum Conventions
+## PRX Enum Conventions
 
 ### Definition
 - PHP 8.1+ backed enums with `int` type

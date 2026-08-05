@@ -8,7 +8,7 @@ priority: 7
 groups: ["frontend-stack"]
 ---
 
-## PRAXXYS Vue Conventions
+## PRX Vue Conventions
 
 ### Composition API
 - `<script setup lang="ts">` — no Options API
@@ -16,7 +16,7 @@ groups: ["frontend-stack"]
 - `defineEmits<T>()` with typed payload
 - `defineModel<T>()` for v-model bindings
 
-### PRAXXYS Vue Kit Components
+### PRX Vue Kit Components
 - **UiDataTable** — data tables with filters, sorting, pagination
 - **UiModal** — modals
 - **UiButton** — buttons

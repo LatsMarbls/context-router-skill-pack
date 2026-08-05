@@ -7,7 +7,7 @@ priority: 9
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Model Conventions
+## PRX Model Conventions
 
 ### Base Class
 - Extend `PRAXXYS\Backend\Models\BaseModel` (aliased as `Model`)

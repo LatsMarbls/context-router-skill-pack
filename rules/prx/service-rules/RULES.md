@@ -7,7 +7,7 @@ priority: 9
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Service Conventions
+## PRX Service Conventions
 
 ### Base Class
 - Extend `PRAXXYS\Backend\Services\CrudService` (extends `ResourceService`)

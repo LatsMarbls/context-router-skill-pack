@@ -7,7 +7,7 @@ priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Request Conventions
+## PRX Request Conventions
 
 ### Never Include
 - `status` — managed by service, not user input

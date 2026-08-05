@@ -4,7 +4,7 @@ keywords: ["security", "cybersecurity"]
 priority: 10
 ---
 
-## PRAXXYS Security Rules
+## PRX Security Rules
 
 - **Authorization**: Gates/Policies — never inline role checks
 - **Validation**: FormRequest `authorize()` — never inline

@@ -4,7 +4,7 @@ keywords: ["review", "code quality"]
 priority: 8
 ---
 
-## PRAXXYS Review Checklist
+## PRX Review Checklist
 
 ### Security
 - [ ] SQL injection: Eloquent used, no raw queries
@@ -21,9 +21,9 @@ priority: 8
 - [ ] FormRequests handle validation — never inline
 - [ ] Naming: methods=verbs, classes=nouns, booleans=is/has/can
 
-### PRAXXYS Compliance
-- [ ] Traits match PRAXXYS conventions
+### PRX Compliance
+- [ ] Traits match PRX conventions
 - [ ] Route files use fluent chaining (no array-style groups)
 - [ ] Migration uses `unsignedTinyInteger` for enums with `->comment(EnumClass::class)`
-- [ ] Resource status follows PRAXXYS format
+- [ ] Resource status follows PRX format
 - [ ] Test coverage for new code, regression tests for bug fixes

@@ -1,19 +1,12 @@
 ---
-name: praxxys-import-rules
+name: prx-import-rules
 triggers:
-  keywords: ["praxxys import"]
+  keywords: ["prx import"]
 priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Import Conventions
-
-### MCP Verification
-```
-mcp_praxxys_backend_get_trait --name=HasImportMethod
-mcp_praxxys_backend_get_trait --name=HasImportProcessor
-mcp_praxxys_backend_get_trait --name=HasImportTest
-```
+## PRX Import Conventions
 
 ### Trait Pair
 | Layer | Trait |

@@ -7,7 +7,7 @@ priority: 9
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Controller Conventions
+## PRX Controller Conventions
 
 ### Base Class
 - Extend `PRAXXYS\Backend\Controllers\ResourceController`

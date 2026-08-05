@@ -7,7 +7,7 @@ priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Route Conventions
+## PRX Route Conventions
 
 ### Structure
 - Prefix: `/admin`

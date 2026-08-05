@@ -7,7 +7,7 @@ priority: 8
 groups: ["backend-stack"]
 ---
 
-## PRAXXYS Testing Conventions
+## PRX Testing Conventions
 
 ### Structure
 - Extend `ResourceOperationTest` for CRUD feature tests

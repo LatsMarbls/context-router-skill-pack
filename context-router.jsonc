@@ -1,5 +1,5 @@
 // ─────────────────────────────────────────────────────────────────────────────
-// PRAXXYS Skill Pack — config
+// PRX Skill Pack — config
 //
 // This file merges into your existing context-routing.jsonc.
 // Arrays overwrite. Objects merge recursively. Scalars overwrite.
