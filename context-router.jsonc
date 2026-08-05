@@ -2,71 +2,24 @@
 // PRAXXYS Skill Pack — config
 //
 // This file merges into your existing context-routing.jsonc.
-// Arrays append. Objects merge recursively. Scalars overwrite.
+// Arrays overwrite. Objects merge recursively. Scalars overwrite.
 //
-// Skill triggers are defined in each skill's frontmatter — no need
-// to duplicate them here. The scanner discovers them automatically.
+// All triggers, priorities, and groups are declared in each skill's RULES.md
+// frontmatter — the scanner discovers them automatically. There is no
+// config-level trigger/group table anymore; the `contentTriggers` / `groups`
+// blocks were removed with the old 4-dimension config model.
 //
 // Install: npx ocr-pack install [--project <path>]
 // ─────────────────────────────────────────────────────────────────────────────
 
 {
   // ── Skill locations ────────────────────────────────────────────────────────
-  // Scanner auto-discovers all triggers/priorities/groups from frontmatter.
+  // Scanner auto-discovers triggers/priorities/groups from RULES.md frontmatter.
   "skillLocations": [
     "{project}/.opencode/rules/prx/{name}/RULES.md",
     "{user}/rules/prx/{name}/RULES.md"
   ],
 
   // ── Evaluate fresh each turn ───────────────────────────────────────────────
-  "accumulateSkills": false,
-
-  // ── SCEUDRIX meta-triggers ─────────────────────────────────────────────────
-  // Each keyword loads a curated skill group based on CRUD scope.
-  // Group expansion happens after trigger resolution.
-  "contentTriggers": {
-    "scrudrix": ["scrudrix"],
-    "crudrix":  ["crudrix"],
-    "sdrix":    ["sdrix"],
-    "six":      ["six"],
-    "sx":       ["sx"]
-  },
-
-  // ── SCEUDRIX skill groups ──────────────────────────────────────────────────
-  // S=Show, C=Create, E=Edit, U=Update, D=Delete, R=Restore, I=Import, X=Export
-  //
-  // Logic:
-  //   Show appears when no Edit/Update → view page instead of edit page
-  //   No Update → no Create → created through API/seeder, not form
-  "groups": {
-    "scrudrix": [
-      "controller-rules", "model-rules", "service-rules", "migration-rules",
-      "route-rules", "request-rules", "enum-rules", "resource-rules",
-      "testing-rules", "praxxys-import-rules", "praxxys-export-rules",
-      "php-conventions", "laravel-rules", "build-rules"
-    ],
-    "crudrix": [
-      "controller-rules", "model-rules", "service-rules", "migration-rules",
-      "route-rules", "request-rules", "enum-rules", "resource-rules",
-      "testing-rules", "php-conventions", "laravel-rules", "build-rules"
-    ],
-    "sdrix": [
-      "controller-rules", "model-rules", "service-rules",
-      "route-rules", "request-rules", "enum-rules", "resource-rules",
-      "testing-rules", "praxxys-import-rules", "praxxys-export-rules",
-      "php-conventions", "laravel-rules", "build-rules"
-    ],
-    "six": [
-      "controller-rules", "model-rules", "service-rules",
-      "route-rules", "request-rules", "enum-rules", "resource-rules",
-      "praxxys-import-rules", "praxxys-export-rules",
-      "php-conventions", "laravel-rules", "build-rules"
-    ],
-    "sx": [
-      "controller-rules", "model-rules", "service-rules",
-      "route-rules", "request-rules", "enum-rules", "resource-rules",
-      "praxxys-export-rules",
-      "php-conventions", "laravel-rules", "build-rules"
-    ]
-  }
+  "accumulateSkills": false
 }
