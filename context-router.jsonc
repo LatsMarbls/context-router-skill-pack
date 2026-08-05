@@ -21,5 +21,13 @@
   ],
 
   // ── Evaluate fresh each turn ───────────────────────────────────────────────
-  "accumulateSkills": false
+  "accumulateSkills": false,
+
+  // ── File trigger precedence ────────────────────────────────────────────────
+  // When a referenced file matches BOTH an extension trigger and a path pattern,
+  // which wins. "path" lets the folder-path match suppress .ext; "extension"
+  // lets the .ext trigger win over the folder-path match.
+  // Primary agent and subagents are tuned independently.
+  "precedencePrimary":  "path",
+  "precedenceSubagent": "extension"
 }

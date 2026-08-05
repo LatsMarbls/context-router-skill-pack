@@ -49,6 +49,21 @@ groups: ["group-name"]
 - Prefer `paths` over `extensions` for directory-specific rules
 - Reference existing rules in `rules/prx/` for style consistency
 
+## File Routing Precedence
+
+When a referenced file matches BOTH an extension trigger and a path pattern,
+which bucket wins is set in `context-router.jsonc`:
+
+| flag | value | effect |
+|------|-------|--------|
+| `precedencePrimary` | `"path"` (default) | Primary agent — folder-path match suppresses .ext |
+| `precedenceSubagent` | `"extension"` | Subagents — .ext trigger wins over folder-path match |
+
+The pack ships `precedencePrimary: "path"` and `precedenceSubagent: "extension"`,
+so subagents route by extension while the primary agent keeps path-wins. Users
+can flip either to the other value. This is a routing policy only — it does not
+change which triggers you declare in frontmatter.
+
 ## Existing Rules
 
 Check `rules/prx/` for existing rules before creating new ones. Avoid duplicating concerns.
